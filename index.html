@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Уровень -809 «Вот мерзкий я»</title>
+    <title>Level -809 — Кирпичный рай</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
     <style>
         * {
@@ -43,7 +43,6 @@
             position: relative;
         }
 
-        /* Фон с текстурой */
         body::before {
             content: '';
             position: fixed;
@@ -80,7 +79,6 @@
             overflow: hidden;
         }
 
-        /* Верхняя линия */
         .container::before {
             content: '';
             position: absolute;
@@ -114,21 +112,6 @@
             margin-top: 0.1rem;
         }
 
-        .author-info {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin: 0.8rem 0 1.2rem 0;
-            padding: 0.4rem 0;
-            border-bottom: 1px dashed var(--border-color);
-        }
-        .author-info .accent {
-            color: var(--gold);
-            font-weight: 500;
-        }
-        .author-info .dim {
-            color: var(--text-dim);
-        }
-
         .class-badge {
             display: inline-flex;
             align-items: center;
@@ -141,7 +124,7 @@
             color: #f0d8d4;
             font-size: 0.8rem;
             letter-spacing: 0.5px;
-            margin: 0 0 1.5rem 0;
+            margin: 1rem 0 1.5rem 0;
             box-shadow: 0 0 30px rgba(192,57,43,0.05);
         }
 
@@ -172,6 +155,15 @@
 
         h2 .emoji {
             margin-right: 0.5rem;
+        }
+
+        h3 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #c8d8e0;
+            margin-top: 1.8rem;
+            margin-bottom: 0.5rem;
         }
 
         p {
@@ -216,6 +208,93 @@
             top: -0.3rem;
             left: 0.5rem;
             font-family: serif;
+        }
+
+        .toc {
+            background: rgba(0,0,0,0.35);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 0.8rem 1.5rem;
+            margin: 1.5rem 0 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.2rem;
+            justify-content: center;
+            backdrop-filter: blur(2px);
+        }
+
+        .toc a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            letter-spacing: 0.5px;
+        }
+
+        .toc a:hover {
+            color: var(--gold);
+            border-color: var(--rust);
+            background: rgba(184,122,75,0.08);
+        }
+
+        .image-card {
+            background: var(--bg-elevated);
+            border-radius: 20px;
+            padding: 0.8rem;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .image-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(0,0,0,0.6);
+        }
+
+        .image-card img {
+            max-width: 100%;
+            border-radius: 14px;
+            display: block;
+        }
+
+        .caption {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            margin-top: 0.6rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .event-block {
+            background: var(--bg-elevated);
+            border-left: 4px solid var(--rust);
+            padding: 1.2rem 1.8rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+            transition: var(--transition);
+        }
+
+        .event-block:hover {
+            border-color: var(--gold);
+            background: rgba(24,32,40,0.8);
+        }
+
+        .event-block.danger {
+            border-left-color: var(--blood);
+        }
+
+        .event-block.rare {
+            border-left-color: var(--cyan);
+        }
+
+        .event-block .title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-primary);
         }
 
         .voice {
@@ -264,33 +343,53 @@
             border-color: var(--gold);
         }
 
-        /* ССЫЛКА НА ГЛАВНУЮ */
-        .back-link {
-            display: inline-block;
-            margin-top: 0.5rem;
-            color: var(--text-dim);
-            text-decoration: none;
+        .counter {
+            text-align: center;
+            margin-top: 1.5rem;
             font-size: 0.85rem;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+        }
+
+        .counter span {
+            color: var(--gold);
+            font-weight: 700;
             font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+        }
+
+        .yt-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
             transition: var(--transition);
-            border-bottom: 1px solid transparent;
-            padding-bottom: 2px;
+            backdrop-filter: blur(4px);
+            font-family: 'Inter', sans-serif;
         }
 
-        .back-link:hover {
-            color: var(--gold);
-            border-color: var(--gold);
+        .yt-link:hover {
+            border-color: #ff0033;
+            box-shadow: 0 0 30px rgba(255,0,51,0.08);
+            transform: translateY(-2px);
         }
 
-        .back-link .arrow {
-            color: var(--cyan);
-            transition: var(--transition);
+        .yt-link .yt-icon {
+            color: #ff0033;
+            font-size: 1.2rem;
         }
 
-        .back-link:hover .arrow {
-            color: var(--gold);
-            transform: translateX(-4px);
-            display: inline-block;
+        .yt-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 2rem auto 1rem;
         }
 
         footer {
@@ -303,20 +402,104 @@
             letter-spacing: 0.5px;
         }
 
-        /* АДАПТИВ */
+        footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        footer .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        footer .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        #splashScreen {
+            position: fixed;
+            inset: 0;
+            background: #080b0e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 1.5s ease, visibility 1.5s ease;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: none;
+        }
+
+        #splashScreen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .splash-content {
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .splash-content .main-text {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #ececec;
+            letter-spacing: 4px;
+        }
+
+        .splash-content .main-text .accent {
+            color: var(--rust);
+        }
+
+        .splash-content .sub-text {
+            font-size: 1rem;
+            color: var(--text-dim);
+            margin-top: 0.5rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+        }
+
+        .splash-content .loading-bar {
+            width: 200px;
+            height: 2px;
+            background: var(--border-color);
+            margin: 1.5rem auto 0;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .splash-content .loading-bar .fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--rust), var(--gold));
+            border-radius: 2px;
+            animation: loadBar 2.2s ease-in-out forwards;
+        }
+
+        @keyframes loadBar {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
         @media (max-width: 768px) {
             .container { padding: 1.8rem; }
             h1 { font-size: 2.4rem; }
-            h2 { font-size: 1.3rem; }
+            .toc { gap: 0.3rem 0.8rem; padding: 0.6rem 1rem; }
+            .toc a { font-size: 0.65rem; }
         }
 
         @media (max-width: 480px) {
             .container { padding: 1.2rem; border-radius: 18px; }
             h1 { font-size: 1.8rem; }
             .class-badge { font-size: 0.65rem; padding: 0.3rem 0.8rem; }
+            h2 { font-size: 1.2rem; padding-left: 0.8rem; }
+            .splash-content .main-text { font-size: 1.8rem; }
             .voice { font-size: 0.85rem; padding: 0.6rem 0.8rem; }
             .mango-note { font-size: 0.9rem; padding: 0.8rem 1rem; }
-            .author-info { font-size: 0.8rem; }
         }
 
         ::-webkit-scrollbar { width: 6px; }
@@ -327,69 +510,125 @@
 </head>
 <body>
 
-<div class="container">
-
-    <h1>Уровень -809</h1>
-    <div class="subhead">«Вот мерзкий я»</div>
-
-    <div class="author-info">
-        <span class="accent">Автор:</span> Sombik_Rombik &nbsp;·&nbsp; <span class="dim">Обнаружен: 3 июля 2026</span>
+    <!-- ЗАСТАВКА -->
+    <div id="splashScreen">
+        <div class="splash-content">
+            <div class="main-text">Level <span class="accent">-809</span></div>
+            <div class="sub-text">Кирпичный рай</div>
+            <div class="loading-bar"><div class="fill"></div></div>
+        </div>
     </div>
 
-    <div class="class-badge">
-        <span class="dot"></span>
-        Сложность: случайная / Сущностей нет / Уровень стабилен
+    <div class="container">
+
+        <h1>Level -809</h1>
+        <div class="subhead">«Кирпичный рай»</div>
+
+        <div class="class-badge">
+            <span class="dot"></span>
+            Класс 5e — Крайне опасно / Крайне нестабильно / Угрозы среды
+        </div>
+
+        <div class="toc">
+            <a href="#description">📌 Описание</a>
+            <a href="#bricks">🧱 Кирпичи</a>
+            <a href="#friend">👤 Друг</a>
+            <a href="#resources">📦 Ресурсы</a>
+            <a href="#hallucinations">🌀 Галлюцинации</a>
+            <a href="#knife">🗡️ Нож</a>
+            <a href="#exit">🚪 Выход</a>
+        </div>
+
+        <p><strong style="color:var(--gold);">Автор:</strong> Sombik_Rombik &nbsp;·&nbsp; <span style="color:var(--text-dim);">Обнаружен: 2 июля 2026</span></p>
+
+        <div class="image-card">
+            <img src="brick.jpg" alt="Бесконечный кирпичный коридор" onerror="this.src='https://placehold.co/800x450/1a222a/8b6b50?text=Level+-809+-+Кирпичный+рай'; this.onerror=null;">
+            <div class="caption">Бесконечный кирпичный коридор (фото неизвестного)</div>
+        </div>
+
+        <h2 id="description"><span class="emoji">📌</span> Описание</h2>
+        <p>При заходе на уровень странник <strong style="color:var(--blood);">теряет 80% всего, что знал о уровне</strong> до попадания на него. Уровень выглядит как бесконечный кирпичный коридор, высотой до потолка всего <strong style="color:var(--gold);">2 метра</strong>. На полу часто встречаются воткнутые в землю ножи — их можно достать, но зачем?</p>
+        <p>На уровне играет <strong style="color:var(--cyan);">детская музыка на непонятном языке</strong>. В коридорах — туман и бесконечная темнота. Из-за нестабильности уровня комнаты то появляются, то закрываются, а входы и выходы могут исчезнуть. Приходится искать тонкую стенку и ломать её. Стены и потолок могут обрушиться в случайных местах. Небо тёмно-серое, облаков нет. Вместо пола — земля или песок. Встреча странников невозможна.</p>
+
+        <h2 id="bricks"><span class="emoji">🧱</span> Кирпичи воспоминаний</h2>
+        <p>Выяснилось, что кирпичи равны части воспоминаний странника. Чем больше ты сломаешь стен или потолков, тем <strong style="color:var(--blood);">меньше ты помнишь</strong>.</p>
+
+        <h2 id="friend"><span class="emoji">👤</span> Друг</h2>
+        <p>На уровне есть всего одна сущность — <strong style="color:var(--gold);">Друг</strong>. Это четырёхметровое чёрное существо, которое при виде странника сразу бежит к нему. Он пытается стать другом, а когда странник теряет бдительность — убивает через удушье.</p>
+        <p>Если вы услышали быстрый бег — срочно бегите. Друг быстро устаёт. На расстоянии 3 метров странник попадает под гипноз и начинает «дружить» с Другом. Что Друг делает с трупами — неизвестно.</p>
+
+        <h2><span class="emoji">☁️</span> Водяной пар</h2>
+        <div class="event-block danger">
+            <p style="margin-bottom: 0;">Иногда из земли или песка идёт <strong style="color:var(--purple, #ab8bff);">фиолетовый пар</strong>. При контакте начинается лихорадка, при вдыхании — смерть через 24 часа. В паре — бактерии <em style="color:var(--blood);">Aqua Mortem</em>. Пар поднимается вверх, к потолку. Не подходите к фиолетовым столбам.</p>
+        </div>
+
+        <h2 id="resources"><span class="emoji">📦</span> Ресурсы</h2>
+        <ul>
+            <li><strong style="color:var(--gold);">Еда:</strong> Чаще всего фрукты или овощи, но иногда еда из детства странника. Если пахнет виноградом то это яд при поглощении отравы странник отключается на 12 часов.</li>
+            <li><strong style="color:var(--gold);">Вода:</strong> В железных банках по 1-2 литра. Иногда отравлени но можно определить по запаху винограда.</li>
+            <li><strong style="color:var(--gold);">Виноградовая вода:</strong> В пластиковой бутылке 0.5 л. Пахнет виноградом — нельзя понять, яд или нет. Действует как миндальная вода.</li>
+            
+        </ul>
+
+        <h2 id="hallucinations"><span class="emoji">🌀</span> Галлюцинации</h2>
+        <p>Наступают на <strong style="color:var(--gold);">5-й день</strong> выживания.</p>
+
+        <h3>📄 Рисунки</h3>
+        <p>На стенах появляются надписи:</p>
+        <div class="voice">«кинь кирпич в стену»</div>
+        <div class="voice">«иди и подружись с другом»</div>
+        <div class="voice">«Ты уверен, что не сдашься? Это конец. Ты уже почти умер, но не осознаёшь этого. Пора уже давно сдаться».</div>
+        <div class="voice">«Хорошая у тебя тяга к жизни, но ты напрасно тратишь силы. Твоё путешествие закончено, и ты должен его закончить».</div>
+
+        <h3>🗣️ Голоса</h3>
+        <p>Голоса невероятно похожи на знакомые. Они призывают к смерти и самоубийству.</p>
+
+        <h3>🏃 Друг-галлюцинация</h3>
+        <p>Иногда страннику кажется, что на него бежит Друг на нереальной скорости. Это галлюцинация, вызванная паранойей.</p>
+
+        <h2 id="knife"><span class="emoji">🗡️</span> Нож</h2>
+        <div class="event-block danger">
+            <p style="margin-bottom: 0;">В земле иногда можно найти воткнутый нож. Он очень острый. Им можно... Хм, даже не знаю...</p>
+        </div>
+
+        <h2 id="exit"><span class="emoji">🚪</span> Вход и выход</h2>
+        <p><strong style="color:var(--gold);">Вход:</strong> На уровне 809, на Острове-мираже, дотронуться до странного красного кирпича.</p>
+        <p><strong style="color:var(--gold);">Выход:</strong> Прожить <strong style="color:var(--cyan);">10 дней</strong> и <strong style="color:var(--blood);">убить Друга</strong>. После этого в глазах потемнеет, и странник проснётся на любом уровне с рейтингом <strong style="color:var(--gold);">«е»</strong>.</p>
+
+        
+        <!-- СЧЁТЧИК С МАЛЕНЬКИМ ЧИСЛОМ -->
+        <div class="counter">
+            📊 Странников попали на уровень -809: <span id="daysCount">7</span>
+        </div>
+
+        <div class="yt-wrapper">
+            <a href="https://www.youtube.com/@SoSomba808" target="_blank" class="yt-link">
+                <span class="yt-icon">▶</span> YouTube
+            </a>
+        </div>
+
+        <footer>
+            Level -809: «Кирпичный рай» — Sombik808. CC BY-SA 3.0.<br>
+            <span style="font-size:0.65rem;">🧱 Уровень исследован не полностью.</span>
+            <div class="footer-links">
+                <a href="mailto:sombik809@gmail.com">✉️ sombik809@gmail.com</a>
+                <a href="#">📜 Лор</a>
+                <a href="#">📖 Архив M.E.G.</a>
+            </div>
+        </footer>
+
     </div>
 
-    <h2><span class="emoji">📌</span> Описание</h2>
-    <p>Уровень представляет из себя коридор с каменным полом, стенами и потолком. Иногда там встречается мясо непонятного происхождения. В конце коридора — дверь. При открытии — белая комната и стул. При заходе в комнату дверь исчезает, и на её месте появляется стена.</p>
-
-    <h2><span class="emoji">🪑</span> Стул</h2>
-    <p>Когда странник садится на стул, он слышит голос, который называет каждый его грех и обсуждает его.</p>
-
-    <div class="quote">«Помнишь, ты нагрубил матери, когда маленьким был? Ты не понимал, что могло случиться, но тебе повезло... или нет. Ты знал, что мать тебя любит, но ты с ней так... она могла тебя бросить. Но она стерпела. Тебе повезло... или нет?»</div>
-
-    <div class="voice">«О, помнишь <strong>[имя жертвы]</strong>? Да, он хотел жить. У него была семья, они по нему скучают. Они хотят, чтобы он вернулся. И чтобы ты тоже вернулся. Как думаешь, зачем? Ты лишил человека жизни. А вдруг у него была цель? Тебе жаль его? Или нет?»</div>
-
-    <div class="voice">«Ты думаешь, месть — это благородно? Ты думаешь, что своё горе можно устранить, причинив горе другому? Месть — это обман утешения. Ты наивен и совершил эту ошибку. Стыдно ли тебе?»</div>
-
-    <h2><span class="emoji">🎭</span> Исходы от поведения странника</h2>
-
-    <p><strong style="color: var(--gold);">Если страннику становится стыдно или мерзко:</strong></p>
-    <div class="voice">«Да, да, да... и это всё сделал ты. Тот, кто еле сидит от прослушивания своих поступков. Мне, как механизму, не понять людей, но могу понять одно: это крайне странные существа. Как можно отвергать свои поступки?»</div>
-
-    <p><strong style="color: var(--gold);">Если страннику всё равно:</strong></p>
-    <div class="voice">«Ого! Да тебе всё равно. Ты не жалеешь столько жертв и тебе всё равно. Но ради чего?»</div>
-    <div class="voice">«Тебе всё равно на то, что ты сделал. Это значит, что <strong style="color: var(--blood);">[тут уровень может размазать самый главный и стыдный секрет]</strong>... тебе тоже всё равно, если это будет опубликовано?»</div>
-
-    <h2><span class="emoji">🗡️</span> Нож</h2>
-    <p>После перебора всех грехов странника уровень говорит примерно:</p>
-    <div class="voice">«Ого, оказывается, ты не такой уж и милый и пушистый!»</div>
-    <p>И выдвигается стол. На нём — нож и надпись: <strong style="color: var(--blood);">«Ты заслуживаешь использовать это для выхода через самоубийство»</strong>.</p>
-
-    <h2><span class="emoji">🌀</span> Галлюцинации</h2>
-    <p>Уровень старается настолько детально описывать грехи, что иногда ты вспоминаешь всё точь-в-точь. Иногда уровень специально накладывает галлюцинации, после которых у странников появляются чувства ничтожности, мерзости к себе и желание самоубийства. Так что редко кто выходил с этого уровня. А мясо в коридоре — это трупы людей, которых убил странник. Если он никого не убивал, то мяса не будет.</p>
-
-    <h2><span class="emoji">📍</span> Суть уровня</h2>
-    <div class="essence-block">
-        <p><strong style="color: var(--gold);">Уровень -809 не пытается уничтожить тебя через самоубийство.</strong> Он пытается показать, что даже человек, который изменился в хорошую сторону, заслуживает наказания за прошлые поступки.</p>
-    </div>
-
-    <h2><span class="emoji">🚪</span> Вход и выход</h2>
-    <p><strong style="color: var(--gold);">Вход:</strong> Если на уровне 809 начать просить о пощаде или о выходе.</p>
-    <p><strong style="color: var(--gold);">Выход:</strong> Если сломать уровень (проломать много стен и т.д.), то уровень скажет:</p>
-    <div class="voice">«Ты такой же слабый и мерзкий, как раньше. Ты и есть монстр».</div>
-    <p>После этого странник отправится:</p>
-    <ul>
-        <li>На <strong style="color: var(--cyan);">Уровень 7</strong> — шанс <strong style="color: var(--gold);">20%</strong></li>
-        <li>На <strong style="color: var(--cyan);">Уровень 37</strong> — шанс <strong style="color: var(--gold);">70%</strong></li>
-        <li>На <strong style="color: var(--cyan);">Уровень !</strong> — шанс <strong style="color: var(--gold);">10%</strong></li>
-    </ul>
-
-    
-
-    
-</div>
+    <script>
+        (function() {
+            const splash = document.getElementById('splashScreen');
+            if (splash) {
+                setTimeout(() => {
+                    splash.classList.add('hidden');
+                }, 2400);
+            }
+        })();
+    </script>
 
 </body>
-</html>
+                                                            </html>
