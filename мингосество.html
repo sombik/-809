@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Уровень -809 «Вот мерзкий я»</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #080b0e;
+            --bg-card: #10161c;
+            --bg-elevated: #182028;
+            --border-color: #2a3a44;
+            --text-primary: #d6e0e8;
+            --text-secondary: #8fa2b2;
+            --text-dim: #5f7382;
+            --rust: #b87a4b;
+            --blood: #c0392b;
+            --gold: #d4a373;
+            --cyan: #3bc5d9;
+            --shadow: rgba(0,0,0,0.7);
+            --radius: 24px;
+            --transition: 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg-primary);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Фон с текстурой */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(184,122,75,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(192,57,43,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(59,197,217,0.02) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            backdrop-filter: blur(4px);
+            border-radius: var(--radius);
+            padding: 2.8rem;
+            box-shadow: 0 30px 60px -20px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Верхняя линия */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--rust), var(--blood), var(--rust), transparent);
+            opacity: 0.5;
+        }
+
+        h1 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3.4rem;
+            font-weight: 700;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #ececec 0%, #a0b8c8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            margin-bottom: 0.2rem;
+            border-bottom: 2px solid var(--rust);
+            padding-bottom: 0.2rem;
+        }
+
+        .subhead {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-top: 0.1rem;
+        }
+
+        .author-info {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0.8rem 0 1.2rem 0;
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+        .author-info .accent {
+            color: var(--gold);
+            font-weight: 500;
+        }
+        .author-info .dim {
+            color: var(--text-dim);
+        }
+
+        .class-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(192, 57, 43, 0.12);
+            border: 1px solid var(--blood);
+            padding: 0.4rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #f0d8d4;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            margin: 0 0 1.5rem 0;
+            box-shadow: 0 0 30px rgba(192,57,43,0.05);
+        }
+
+        .class-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--blood);
+            border-radius: 50%;
+            animation: pulseDot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.2; transform: scale(1.8); }
+        }
+
+        h2 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--gold);
+            margin-top: 2.8rem;
+            margin-bottom: 0.75rem;
+            border-left: 4px solid var(--rust);
+            padding-left: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        h2 .emoji {
+            margin-right: 0.5rem;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+        }
+
+        ul {
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        ul li {
+            margin-bottom: 0.4rem;
+            list-style-type: '▸ ';
+            padding-left: 0.3rem;
+        }
+
+        ul li::marker {
+            color: var(--gold);
+        }
+
+        .quote {
+            background: rgba(0,0,0,0.4);
+            border-left: 4px solid var(--rust);
+            padding: 1.2rem 1.8rem;
+            margin: 1.8rem 0;
+            font-style: italic;
+            color: #d0d8e0;
+            border-radius: 0 12px 12px 0;
+            position: relative;
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 3.5rem;
+            color: var(--rust);
+            opacity: 0.2;
+            position: absolute;
+            top: -0.3rem;
+            left: 0.5rem;
+            font-family: serif;
+        }
+
+        .voice {
+            color: var(--cyan);
+            font-style: italic;
+            padding: 0.8rem 1.2rem;
+            margin: 0.8rem 0;
+            border-left: 2px dashed var(--cyan);
+            background: rgba(59,197,217,0.04);
+            border-radius: 0 8px 8px 0;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .voice strong {
+            color: var(--gold);
+            font-style: normal;
+        }
+
+        .essence-block {
+            background: var(--bg-elevated);
+            border-left: 4px solid var(--blood);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .essence-block p {
+            margin-bottom: 0.8rem;
+        }
+
+        .mango-note {
+            background: rgba(184,122,75,0.06);
+            border: 1px solid var(--rust);
+            border-radius: 16px;
+            padding: 1.2rem 1.8rem;
+            margin: 1.8rem 0;
+            color: var(--gold);
+            text-align: center;
+            font-size: 1.05rem;
+            transition: var(--transition);
+        }
+
+        .mango-note:hover {
+            background: rgba(184,122,75,0.08);
+            border-color: var(--gold);
+        }
+
+        /* ССЫЛКА НА ГЛАВНУЮ */
+        .back-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            transition: var(--transition);
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .back-link:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .back-link .arrow {
+            color: var(--cyan);
+            transition: var(--transition);
+        }
+
+        .back-link:hover .arrow {
+            color: var(--gold);
+            transform: translateX(-4px);
+            display: inline-block;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            letter-spacing: 0.5px;
+        }
+
+        /* АДАПТИВ */
+        @media (max-width: 768px) {
+            .container { padding: 1.8rem; }
+            h1 { font-size: 2.4rem; }
+            h2 { font-size: 1.3rem; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 1.2rem; border-radius: 18px; }
+            h1 { font-size: 1.8rem; }
+            .class-badge { font-size: 0.65rem; padding: 0.3rem 0.8rem; }
+            .voice { font-size: 0.85rem; padding: 0.6rem 0.8rem; }
+            .mango-note { font-size: 0.9rem; padding: 0.8rem 1rem; }
+            .author-info { font-size: 0.8rem; }
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--rust); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Уровень -809</h1>
+    <div class="subhead">«Вот мерзкий я»</div>
+
+    <div class="author-info">
+        <span class="accent">Автор:</span> Sombik_Rombik &nbsp;·&nbsp; <span class="dim">Обнаружен: 3 июля 2026</span>
+    </div>
+
+    <div class="class-badge">
+        <span class="dot"></span>
+        Сложность: случайная / Сущностей нет / Уровень стабилен
+    </div>
+
+    <h2><span class="emoji">📌</span> Описание</h2>
+    <p>Уровень представляет из себя коридор с каменным полом, стенами и потолком. Иногда там встречается мясо непонятного происхождения. В конце коридора — дверь. При открытии — белая комната и стул. При заходе в комнату дверь исчезает, и на её месте появляется стена.</p>
+
+    <h2><span class="emoji">🪑</span> Стул</h2>
+    <p>Когда странник садится на стул, он слышит голос, который называет каждый его грех и обсуждает его.</p>
+
+    <div class="quote">«Помнишь, ты нагрубил матери, когда маленьким был? Ты не понимал, что могло случиться, но тебе повезло... или нет. Ты знал, что мать тебя любит, но ты с ней так... она могла тебя бросить. Но она стерпела. Тебе повезло... или нет?»</div>
+
+    <div class="voice">«О, помнишь <strong>[имя жертвы]</strong>? Да, он хотел жить. У него была семья, они по нему скучают. Они хотят, чтобы он вернулся. И чтобы ты тоже вернулся. Как думаешь, зачем? Ты лишил человека жизни. А вдруг у него была цель? Тебе жаль его? Или нет?»</div>
+
+    <div class="voice">«Ты думаешь, месть — это благородно? Ты думаешь, что своё горе можно устранить, причинив горе другому? Месть — это обман утешения. Ты наивен и совершил эту ошибку. Стыдно ли тебе?»</div>
+
+    <h2><span class="emoji">🎭</span> Исходы от поведения странника</h2>
+
+    <p><strong style="color: var(--gold);">Если страннику становится стыдно или мерзко:</strong></p>
+    <div class="voice">«Да, да, да... и это всё сделал ты. Тот, кто еле сидит от прослушивания своих поступков. Мне, как механизму, не понять людей, но могу понять одно: это крайне странные существа. Как можно отвергать свои поступки?»</div>
+
+    <p><strong style="color: var(--gold);">Если страннику всё равно:</strong></p>
+    <div class="voice">«Ого! Да тебе всё равно. Ты не жалеешь столько жертв и тебе всё равно. Но ради чего?»</div>
+    <div class="voice">«Тебе всё равно на то, что ты сделал. Это значит, что <strong style="color: var(--blood);">[тут уровень может размазать самый главный и стыдный секрет]</strong>... тебе тоже всё равно, если это будет опубликовано?»</div>
+
+    <h2><span class="emoji">🗡️</span> Нож</h2>
+    <p>После перебора всех грехов странника уровень говорит примерно:</p>
+    <div class="voice">«Ого, оказывается, ты не такой уж и милый и пушистый!»</div>
+    <p>И выдвигается стол. На нём — нож и надпись: <strong style="color: var(--blood);">«Ты заслуживаешь использовать это для выхода через самоубийство»</strong>.</p>
+
+    <h2><span class="emoji">🌀</span> Галлюцинации</h2>
+    <p>Уровень старается настолько детально описывать грехи, что иногда ты вспоминаешь всё точь-в-точь. Иногда уровень специально накладывает галлюцинации, после которых у странников появляются чувства ничтожности, мерзости к себе и желание самоубийства. Так что редко кто выходил с этого уровня. А мясо в коридоре — это трупы людей, которых убил странник. Если он никого не убивал, то мяса не будет.</p>
+
+    <h2><span class="emoji">📍</span> Суть уровня</h2>
+    <div class="essence-block">
+        <p><strong style="color: var(--gold);">Уровень -809 не пытается уничтожить тебя через самоубийство.</strong> Он пытается показать, что даже человек, который изменился в хорошую сторону, заслуживает наказания за прошлые поступки.</p>
+    </div>
+
+    <h2><span class="emoji">🚪</span> Вход и выход</h2>
+    <p><strong style="color: var(--gold);">Вход:</strong> Если на уровне 809 начать просить о пощаде или о выходе.</p>
+    <p><strong style="color: var(--gold);">Выход:</strong> Если сломать уровень (проломать много стен и т.д.), то уровень скажет:</p>
+    <div class="voice">«Ты такой же слабый и мерзкий, как раньше. Ты и есть монстр».</div>
+    <p>После этого странник отправится:</p>
+    <ul>
+        <li>На <strong style="color: var(--cyan);">Уровень 7</strong> — шанс <strong style="color: var(--gold);">20%</strong></li>
+        <li>На <strong style="color: var(--cyan);">Уровень 37</strong> — шанс <strong style="color: var(--gold);">70%</strong></li>
+        <li>На <strong style="color: var(--cyan);">Уровень !</strong> — шанс <strong style="color: var(--gold);">10%</strong></li>
+    </ul>
+
+    
+
+    
+</div>
+
+</body>
+</html>
